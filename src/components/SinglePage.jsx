@@ -6,6 +6,8 @@ function SinglePage() {
     const navigate = useNavigate();
     const [album, setAlbum] = useState(null);
     
+    const goBack = () => navigate(-1);
+
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/albums/${id}`)
             .then(res => res.json())
@@ -14,6 +16,7 @@ function SinglePage() {
 
     return (
         <div>
+            <button onClick={goBack}>Go back</button>
             {album && (
                 <>
                     <h1>{album.title}</h1>
