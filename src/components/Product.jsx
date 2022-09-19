@@ -13,6 +13,7 @@ const Product = () => {
     return (
         <div>
             <h1>Prod</h1>
+            <Link to="/product/new">Add new Product</Link>
             {
                 albums.map(album => 
                     <Link key={album.id} to={`/product/${album.id}`}>
