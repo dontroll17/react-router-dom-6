@@ -1,18 +1,10 @@
-import { useNavigate, useParams } from 'react-router-dom'
-import { useState, useEffect } from "react";
+import { useLoaderData, useNavigate } from 'react-router-dom'
 
 function SinglePage() {
-    const {id} = useParams();
+    const album = useLoaderData();
     const navigate = useNavigate();
-    const [album, setAlbum] = useState(null);
     
     const goBack = () => navigate(-1);
-
-    useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/albums/${id}`)
-            .then(res => res.json())
-            .then(data => setAlbum(data))
-    }, [id]);
 
     return (
         <div>
@@ -25,6 +17,12 @@ function SinglePage() {
             )}
         </div>
     )
+}
+
+export const singleLoader = async ({params}) => {
+    const id = params.id;
+    const res = await fetch(`https://jsonplaceholder.typicode.com/albums/${id}`)
+    return res.json();
 }
 
 export default SinglePage
