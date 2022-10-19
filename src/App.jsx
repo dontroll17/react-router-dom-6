@@ -11,13 +11,14 @@ import AuthProvider from "./hoc/AuthProvider";
 import About from "./components/About";
 
 import RequireAuth from './hoc/RequireAuth';
+import Error from "./components/Error";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     <Route index element={<Home />}/>
     <Route path="login" element={<LoginPage />} />
     <Route path="product" element={<Product/>} loader={loader}/>
-    <Route path="product/:id" element={<SinglePage />} loader={singleLoader}/>
+    <Route path="product/:id" element={<SinglePage />} loader={singleLoader} errorElement={<Error />}/>
     <Route path="product/new" element={
       <RequireAuth>
         <CreateProd />
